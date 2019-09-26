@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Tab Two
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let data of datas;" (click)="presentModal(data.sequence,tagBuffer)">
+      <ion-label>
+        <h1>title:{{data.title}}</h1>
+        <h4>tag:{{data.tag[0]}}</h4>
+        <p>description:{{data.description}}</p>
+      </ion-label>
+      <ion-toggle slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
