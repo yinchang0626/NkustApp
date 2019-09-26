@@ -7,18 +7,24 @@
 </ion-header>
 <ion-content>
     <ion-list>
-        <ion-item *ngFor="let data of datas;" (click)="presentModal(data)">
+        <ion-item *ngFor="let data of datas;let dataIndex =index" (click)="presentModal(data)">
             <ion-label>
-                <h1>{{data.title}}</h1>
-                <h4>標籤 :<span>{{data.tag[0]}}</span></h4>
+                <h1>#{{dataIndex+1}}-{{data.title}}</h1>
+
                 <p>{{data.description}}</p>
+                <span>
+                    <ion-chip *ngFor="let tag of data.tag" color="primary">
+                        <ion-label>{{tag}}</ion-label>
+                    </ion-chip>
+                </span>
             </ion-label>
+            <ion-button slot="end" color="danger" (click)="deletAction(data)">X</ion-button>
+
         </ion-item>
     </ion-list>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button>
-            <ion-icon name="add" (clcik)="addAction()"></ion-icon>
+            <ion-icon name="add" (click)="addAction('test')"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-
 </ion-content>

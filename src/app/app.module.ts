@@ -8,18 +8,19 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ModalPage } from './modal2/modal.page';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent,ModalPage],
-  entryComponents: [ModalPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+
+}

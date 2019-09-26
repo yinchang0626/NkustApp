@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal2/modal.page';
+import { ModalPage } from './modals/todoModal/modal.page';
+
 
 @Component({
     selector: 'app-tab2',
@@ -9,35 +10,26 @@ import { ModalPage } from '../modal2/modal.page';
 })
 export class Tab2Page {
 
-    datas: any[] = [{
+    public datas: any[] = [{
         "id": 1,
         "title": "TODO 1",
-        "tag": ["Work"],
+        "tag": ["工作"],
         "description": "TODODetail",
         "isFinish": false
     },
     {
         "id": 2,
         "title": "TODO 2",
-        "tag": ["Work", "Study"],
+        "tag": ["工作", "讀書"],
         "description": "TODODetail",
         "isFinish": true
     }];
 
-    datasBuffer: any[] = this.datas;
-    tagBuffer: any[] = [];
-    lastNumofBuffer: number;
 
-    constructor(public modalController: ModalController) { }
-
-    ngOnInit() {
-        this.datasBuffer.sort(function (a, b) {
-            return a.tag.length - b.tag.length;
-        });
-        this.tagBuffer = this.datasBuffer[this.datasBuffer.length - 1].tag;
+    constructor(public modalController: ModalController) {
     }
 
-    editAction(item: any) {
+    ngOnInit() {
     }
 
     async presentModal(item: any) {
@@ -45,14 +37,36 @@ export class Tab2Page {
             component: ModalPage,
             componentProps: { data: item }
         });
-        return await modal.present();
-    }
-
-    async addAction() {
-        const modal = await this.modalController.create({
-            component: ModalPage,
+        modal.onDidDismiss().then((result) => {
+            //有傳資料代表要更新陣列
+            if (result.data) { 
+                var findexDataIndex = this.datas.indexOf(item => {
+                    return item.id == result.data.id;
+                })
+                if (findexDataIndex != -1) {
+                    this.datas[findexDataIndex] = result.data;
+                }
+            }
+            
         });
         return await modal.present();
+    }
+
+    async addAction(title: string) {
+        var randomId = new Date().getUTCMilliseconds().toString() + new Date().getMinutes().toString();
+        this.datas.push({
+            "id": randomId,
+            "title": title + randomId,
+            "tag": [],
+            "description": "TODO3Detail",
+            "isFinish": false
+        });
 
     }
+    deletAction(data: any) {
+        this.datas = this.datas.filter(item => {
+            return item.id != data.id;
+        });
+    }
+
 }
