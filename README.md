@@ -3,8 +3,33 @@
 
 2.Ionic 連線至網站取的資料,POST,GET,DELETE
 
-3.Route 使用
+3.Route 切換
 
+4.時間足夠:安裝 cordova  BLT 套件
+
+--------------------------
+
+# 注意事項  
+ 
+安裝nodejs:https://nodejs.org/en/  
+
+cmd
+npm -g ionic
+
+
+開發用指令
+
+``` cmd
+ionic start AppName
+cd ./AppName
+ionic serve -l
+```  
+
+從Github下載的檔案  
+1.須執行在目錄下 執行 npm install  
+
+
+-----------------------------------------
 
 # 2019-09-26
 
@@ -15,9 +40,6 @@ typescript: https://www.typescriptlang.org/
 javascript(可查看陣列操作) : https://developer.mozilla.org/zh-TW/docs/Web/JavaScript
 
 查看 docs 資料夾:0926下課練習.pptx
-
------------------------------------------
-
 
 建立一個簡易列表，並可對資料簡易CRUD操作  
 1.在第二個TAB建立 一個 List Component(可將 router預設轉為 tab2)  
