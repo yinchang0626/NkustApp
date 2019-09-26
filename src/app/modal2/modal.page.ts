@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NavParams } from '@ionic/angular';
-import { modalController } from '@ionic/core';
+import { NavParams, ModalController } from '@ionic/angular';
 
 @Component({
     selector: 'modal-page',
@@ -8,31 +7,38 @@ import { modalController } from '@ionic/core';
 })
 export class ModalPage {
 
-    @Input() sequence;
+    @Input() data;
 
     responseData: any = {};
     ngTag: string;
     tag: string[] = [];
     title: string;
     description: string;
+    options: any = [
+        { name: "¤u§@", value: 'work' },
+        { name: "Åª®Ñ", value: 'student' }
 
-    constructor(navParams: NavParams) {
-        // componentProps can also be accessed at construction time using NavParams
+    ]
+
+    constructor(private navParams: NavParams, private modalCtrl: ModalController) {
+        this.data = {};
+    }
+    
+    dismiss() {
+        this.modalCtrl.dismiss(this.responseData);
+        
     }
 
-    dismiss() {
-        // using the injected ModalController this page
-        // can "dismiss" itself and optionally pass back data
-        this.responseData.sequence = this.sequence;
+    saveAction() {
+        this.responseData.id = this.data.id;
         this.responseData.title = this.title;
         this.responseData.description = this.description;
         this.responseData.tag = this.tag;
-        modalController.dismiss(this.responseData);
+        this.modalCtrl.dismiss(this.responseData);
     }
 
     tagChange() {
         this.tag.push(this.ngTag)
-        console.log(this.ngTag)
     }
 
 }
