@@ -46,7 +46,7 @@ export class Tab2Page {
     console.log(item.sequence);
   }
 
-  async presentModal(sequence: number,tagBuffer:[]) {
+  async presentModal(sequence: number,tagBuffer:any) {
     const modal = await this.modalController.create({
       component: ModalPage,
       componentProps: { sequence,tagBuffer}
@@ -67,6 +67,9 @@ export class Tab2Page {
       });
     return await modal.present();
   }
+
+    addAction(){
+    }
 
 
 

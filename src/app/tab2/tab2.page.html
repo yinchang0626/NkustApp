@@ -1,21 +1,26 @@
-<ion-header>
+﻿<ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      TODO 
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let data of datas;" (click)="presentModal(data.sequence,tagBuffer)">
-      <ion-label>
-        <h1>title:{{data.title}}</h1>
-        <h4>tag:{{data.tag[0]}}</h4>
-        <p>description:{{data.description}}</p>
-      </ion-label>
-      <ion-toggle slot="end"></ion-toggle>
-    </ion-item>
-  </ion-list>
+    <ion-list>
+        <ion-item *ngFor="let data of datas;" (click)="presentModal(data.sequence,tagBuffer)">
+            <ion-label>
+                <h1>{{data.title}}</h1>
+                <h4>標籤{{data.tag[0]}}</h4>
+                <p>{{data.description}}</p>
+            </ion-label>
+            <ion-toggle slot="end"></ion-toggle>
+        </ion-item>
+    </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+            <ion-icon name="add" (clcik)="addAction()"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 
 </ion-content>

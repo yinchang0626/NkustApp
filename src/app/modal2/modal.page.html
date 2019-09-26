@@ -1,24 +1,30 @@
-<ion-header>
+﻿<ion-header>
   <ion-toolbar>
     <ion-title>
-      Modal
+      編輯資料
     </ion-title>
   </ion-toolbar>
-  <ion-button color="primary" (click)="dismiss()">close</ion-button>
+
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>title:</ion-label>
-    <ion-input placeholder="enter title" type="text" [(ngModel)]="title"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-select [(ngModel)]="ngTag" (ionChange)="tagChange()">
-      <ion-select-option  *ngFor="let tag of tagBuffer">{{tag}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label>description:</ion-label>
-    <ion-textarea rows="5" placeholder="enter description" type="text" [(ngModel)]="description"></ion-textarea>
-  </ion-item>
+    <ion-item>
+        <ion-label>Title</ion-label>
+        <ion-input placeholder="enter title" type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Tag</ion-label>
+        <ion-select [(ngModel)]="ngTag" (ionChange)="tagChange()">
+            <ion-select-option *ngFor="let tag of tagBuffer">{{tag}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>description</ion-label>
+        <ion-textarea rows="5" placeholder="enter description" type="text" [(ngModel)]="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+        <ion-button color="primary" (click)="dismiss()">close</ion-button>
+    </ion-item>
+    <ion-button expand="block">編輯</ion-button>
+    <ion-button expand="block" color="danger" (click)="dismiss()">取消</ion-button>
 </ion-content>
