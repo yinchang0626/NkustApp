@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        題目列表
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div class="ion-padding">
+      題目列表
+    </div>
+    <ion-list *ngFor="let question of datas">
+      <ion-list-header>
+        <ion-label>{{question.title}}</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let option of question.options">
+        <ion-label>{{option.title}}</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="option.checked" [value]="option.value" (click)="clearOtherOption(question,option)" ></ion-checkbox>
+      </ion-item>
+  
+    </ion-list>
+  
+    <ion-button expand="block" (click)="submitAction()">提交</ion-button>
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="addQuestionAction()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab> -->
+  </ion-content>
