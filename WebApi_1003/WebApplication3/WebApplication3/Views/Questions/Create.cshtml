@@ -1,0 +1,44 @@
+﻿@model WebApplication3.Data.Question
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <input type="hidden" asp-for="QuestionTypeId" value="@(ViewBag.QuestionType.Id)" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Seq" class="control-label"></label>
+                <input asp-for="Seq" class="form-control" value="@(ViewBag.QuestionType.Questions.Count+1)" />
+                <span asp-validation-for="Seq" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <input asp-for="Text" class="form-control" />
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Answer" class="control-label"></label>
+                <input asp-for="Answer" class="form-control" />
+                <span asp-validation-for="Answer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-questionTypeId="@ViewBag.QuestionType.Id">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

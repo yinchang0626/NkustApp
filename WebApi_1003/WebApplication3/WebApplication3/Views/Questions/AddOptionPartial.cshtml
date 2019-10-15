@@ -1,0 +1,12 @@
+﻿@model WebApplication3.Data.QuestionOption
+
+    <form asp-action="AddOption" method="POST">
+        <input type="hidden" asp-for="QuestionId">
+        <input type="hidden" asp-for="Value">
+        <div class="input-group mb-3">
+            <input type="text" asp-for="Text" class="form-control" placeholder="Question's Option">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+        </div>
+    </form>

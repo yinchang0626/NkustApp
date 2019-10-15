@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebApplication3.Data.QuestionType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1>QuestionType-題型</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:120px">
+                @Html.DisplayNameFor(model => model.Group.Name)
+            </th>
+            <th style="width:80px">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th style="width:300px">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Group.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Index" asp-controller="Questions" asp-route-questionTypeId="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
