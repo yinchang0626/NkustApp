@@ -17,5 +17,6 @@ export class HomePage implements OnInit {
 
   ngOnInit(){
     this.datas$ = this.http.get<any>(AppConsts.RemoteUrl + '/api/QuestionGroups');
+
   }
 }
