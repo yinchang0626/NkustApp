@@ -1,6 +1,8 @@
-# 下次內容
-1.ionic 取得資料庫資料
-
+# 2019-10-17
+1.先執行WebApplication3 ，按下sln副檔名會開啟visual studiom, F5(編譯後)，Visual Studio 會建立網站並開啟網頁(<http://localhost:57271/>)    
+2.Ionic : nkust1017 , 執行後，API預設連接到 http://localhost:57271/
+3.Angular 參考資料 : <https://angular.io/guide/http>
+4. Android debug Tool : <https://play.google.com/store/apps/details?id=io.ionic.devapp>
 # 2019-10-03
 1.建立 WebApi 網站，及資料庫連線  
 
