@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AppConsts } from 'src/app/app-consts';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 @Component({
   selector: 'app-quiz-page',
@@ -14,9 +15,15 @@ export class QuizPageComponent implements OnInit {
   currentGroupId: any;
   data: any;
   summaryText:string;
+  @ViewChild("audio",{static:false}) audio;
 
-
-  constructor(private http: HttpClient, public router: Router) {
+  constructor(private http: HttpClient, public router: Router, private nativeAudio: NativeAudio) {
+    //測試聲音，用ionic native ,無法再browser 測試，要用手機實測(ionicDev app)
+    // this.nativeAudio.preloadSimple('first','/assets/Track_01.mp3');
+    // this.nativeAudio.play('first').then(()=>{console.log('play')});
+    //測試-使用html5原生
+    //this.audio = new Audio("/assets/Track_01.mp3");
+    //this.audio.play();
 
   }
 

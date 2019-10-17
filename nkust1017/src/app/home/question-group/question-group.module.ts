@@ -5,6 +5,7 @@ import { QuestionGroupRoutingModule } from './question-group-routing.module';
 import { QuizPageComponent } from './quiz-page/quiz-page.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     QuestionGroupRoutingModule,
     IonicModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],providers:[NativeAudio]
 })
 export class QuestionGroupModule { }

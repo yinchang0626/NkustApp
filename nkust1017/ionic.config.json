@@ -1,5 +1,7 @@
 {
   "name": "nkust1017",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
