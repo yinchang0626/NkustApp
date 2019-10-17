@@ -38,12 +38,23 @@ namespace WebApplication3
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection").Replace("%CONTENTROOTPATH%", _contentRootPath)));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                builder =>
+                {
+                    builder.WithOrigins("http://**").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials();
+                });
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -68,11 +79,10 @@ namespace WebApplication3
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors("AllowAll");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseAuthentication();
 
             app.UseMvc(routes =>

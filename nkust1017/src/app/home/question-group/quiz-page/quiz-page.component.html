@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+        {{data?.group}}
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true"  #slider>
+    <ion-slide *ngFor="let item of data?.questionTypes">
+      
+      <div class="slide-content" style="width: 100%">
+        <h1>{{item.title}}&nbsp;<p style="font-size:12px">{{item.description}}</p>
+        </h1>
+        <ion-list *ngFor="let question of item.questions" no-lines>
+          <ion-list-header>
+            <ion-label>{{question.question}}</ion-label>
+          </ion-list-header>
+          <ion-item *ngFor="let option of question.options;let i = index">
+            <ion-label>{{option.text}}</ion-label>
+            <ion-checkbox slot="start" [value]="option.value" [(ngModel)]=option._checkValue></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>{{summaryText}}</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="submitAction()">
+        <ion-icon name="checkmark"></ion-icon>提交
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
