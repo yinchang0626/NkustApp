@@ -14,17 +14,13 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
 export class QuizPageComponent implements OnInit {
   currentGroupId: any;
   data: any;
-  summaryText:string;
-  @ViewChild("audio",{static:false}) audio;
+  summaryText: string;
+  @ViewChild("audio", { static: false }) audio;
 
   constructor(private http: HttpClient, public router: Router, private nativeAudio: NativeAudio) {
-    //測試聲音，用ionic native ,無法再browser 測試，要用手機實測(ionicDev app)
-    // this.nativeAudio.preloadSimple('first','/assets/Track_01.mp3');
-    // this.nativeAudio.play('first').then(()=>{console.log('play')});
     //測試-使用html5原生
     //this.audio = new Audio("/assets/Track_01.mp3");
     //this.audio.play();
-
   }
 
   ngOnInit() {
@@ -38,43 +34,45 @@ export class QuizPageComponent implements OnInit {
     });
   }
 
-  submitAction(){
+  submitAction() {
     let unAnswerCount = this.validationQuzi();
-     if(unAnswerCount == 0){
-       this.validationAnswer();
-     }
+    if (unAnswerCount == 0) {
+      this.validationAnswer();
+    }
   }
-
-  validationQuzi (): number
-  {
+  /**
+   * 驗證未填答
+   */
+  validationQuzi(): number {
     let unAnswerCount: number = 0;
 
     this.data.questionTypes.forEach(questionType => {
-      questionType.questions.forEach(question=>{
-        var selectedAnswerCount = question.options.filter(x=>{return x._checkValue}).length;
-        if(selectedAnswerCount == 0) unAnswerCount++;
+      questionType.questions.forEach(question => {
+        var selectedAnswerCount = question.options.filter(x => { return x._checkValue }).length;
+        if (selectedAnswerCount == 0) unAnswerCount++;
       })
     });
-    if(unAnswerCount > 0){
+    if (unAnswerCount > 0) {
       this.summaryText = `尚有${unAnswerCount}題未回答`;
-    }else{
+    } else {
       this.summaryText = null;
     }
-
     return unAnswerCount;
-
   }
 
-  validationAnswer(){
+  /**
+   * 驗證答案是否正確
+   */
+  validationAnswer() {
     let rightAnswer = 0;
     let errorAnswerCount = 0;
     this.data.questionTypes.forEach(questionType => {
-      questionType.questions.forEach(question=>{
-        var filterData = question.options.filter(x=>{return x._checkValue});
+      questionType.questions.forEach(question => {
+        var filterData = question.options.filter(x => { return x._checkValue });
         var selectedAnswerCount = filterData.length;
-        if(selectedAnswerCount == 1 && filterData[0].value == question.answer ) {
+        if (selectedAnswerCount == 1 && filterData[0].value == question.answer) {
           rightAnswer++;
-        }else{
+        } else {
           errorAnswerCount++;
         }
       })
