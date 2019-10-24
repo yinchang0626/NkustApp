@@ -329,3 +329,5 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 .vs\
+WebApi_1003/WebApplication3/WebApplication3/App_Data/Questions_log.ldf
+WebApi_1003/WebApplication3/WebApplication3/App_Data/Questions.mdf

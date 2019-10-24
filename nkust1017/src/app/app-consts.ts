@@ -1,3 +1,4 @@
 export class AppConsts{
-    static RemoteUrl:string = 'http://localhost:57271';
+    //請自行調整遠端連線
+    static RemoteUrl:string = 'http://demo.furthersoftware.com.tw';
 }
