@@ -1,8 +1,12 @@
+# 2019-10-31  
+1.藍芽連線裝置  
+2.Ionic 部分指令說明(plugin,platform,prepare,resources) 
+3.Ionic 連線並取得 DB資料   
+4.後端程式
+
 # 2019-10-24
 1.後端程式  
 2.架設及發佈網站，MS SQLSERVER   
-3.Ionic 連線並取得 DB資料  
-4.Ionic 部分指令說明(plugin,platform,prepare,resources)
 
 # 2019-10-17
 1.先執行WebApplication3 ，按下sln副檔名會開啟visual studiom, F5(編譯後)，Visual Studio 會建立網站並開啟網頁(<http://localhost:57271/>)    
