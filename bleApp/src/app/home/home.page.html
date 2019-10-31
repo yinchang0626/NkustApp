@@ -1,14 +1,26 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      BLE TEST
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+    
+    <ion-list>
+      <ion-list-header>
+        <ion-label>BLE Deveice List</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let item of datas;let i = index">
+          <ion-text >
+              <p><span *ngIf="item.isEmmaDevice">EmmaDevice</span> #{{i+1}}-{{item.id}} </p>
+              <p>RSSI : {{item.rssi}}</p>
+              <p>{{item.timestamp | date: 'yyyy-MM-dd HH:mm:ss'}}</p> 
+            </ion-text>
+            
+        </ion-item>
+    </ion-list>
   </div>
 </ion-content>
