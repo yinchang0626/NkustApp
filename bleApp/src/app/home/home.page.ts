@@ -8,12 +8,26 @@ import { Platform, NavController } from '@ionic/angular';
    rssi:Number;
    isEmmaDevice:boolean = false;
    timestamp:Date;
+   //測試用裝置ID
+   private demoBLTDeviceID =  'F5:D4:4D:26:FC:E2';
    constructor(x){
      this.id = x.id;
      this.advertising = x.advertising;
      this.rssi = x.rssi;
      this.isEmmaDevice = x.isEmmaDevice;
      this.timestamp = new Date();
+     this.checkIsEmmaDevice();
+   }
+
+
+   checkIsEmmaDevice(){
+    if(this.demoBLTDeviceID == this.id){
+      this.isEmmaDevice = true;
+    }else{
+      this.isEmmaDevice = false;
+    }
+     
+
    }
    
    update(x){
@@ -29,8 +43,10 @@ import { Platform, NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  demoBLTDeviceID =  'F5:D4:4D:26:FC:E2';
-  datas:any = [];
+
+  datas:any;
+  isOnlyShowEmmDevice: boolean  = true;
+  debug;
   constructor(private bleDevice:BLE,  private platform: Platform,public navCtrl: NavController ) {
     
   }
@@ -38,41 +54,53 @@ export class HomePage {
     
     this.platform.ready().then(()=>{
       this.scanAllDevice();
+      this.removeDeviceFromListIfTimeout(5000);
     });
     
-     setInterval(()=>{
-       var date = Date.now();
-       this.datas = this.datas.filter(element =>{
-         return date - element.timestamp.getTime() < 5000;
-       });
-     },5000);
+    
+  }
+
+
+  private removeDeviceFromListIfTimeout(timeout:number){
+    setInterval(()=>{
+      var date = Date.now();
+      this.datas = this.datas.filter(element =>{
+        return date - element.timestamp.getTime() < timeout;
+      });
+    },timeout);
+
   }
 
   scanAllDevice(){
-    setInterval(()=>{
-      this.bleDevice.scan([],500).subscribe(x=>{
+      this.bleDevice.startScanWithOptions([],{reportDuplicates:true}).subscribe(x=>{
+        if(!this.datas) this.datas = [];
         var index = this.datas.map(element =>{
           return element.id;
         }).indexOf(x.id);
         if(index == -1)
         {
-          if(this.demoBLTDeviceID == x.id){
-            x.isEmmaDevice = true;
+          var data = new DeviceInfo(x);
+          if(this.isOnlyShowEmmDevice){
+            if(data.isEmmaDevice){
+              this.datas.push(data);
+            }
+          }else{
+            this.datas.push(data);
           }
-          this.datas.push(new DeviceInfo(x));
         }
         else{
           this.datas[index].update(x);
         }
-      })
-    },1000);
-
+      });
   }
 
   connect(deviceId:string){
     this.bleDevice.connect(deviceId).subscribe(res=>{
-      console.log(res);
+      this.debug = res;
     });
   }
 
+  clearDevice(){
+    this.datas = [];
+  }
 }

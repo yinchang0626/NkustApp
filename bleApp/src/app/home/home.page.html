@@ -8,19 +8,41 @@
 
 <ion-content>
   <div class="ion-padding">
-    
+    <ion-item>
+          <ion-label>僅顯示Emm裝置</ion-label>
+          <ion-toggle [(ngModel)]="isOnlyShowEmmDevice" (ionChange)=clearDevice()></ion-toggle>
+    </ion-item>
+
     <ion-list>
       <ion-list-header>
         <ion-label>BLE Deveice List</ion-label>
       </ion-list-header>
+      <ion-item *ngIf="!datas">
+        <p>等待裝置回應...</p>
+      </ion-item>
+      <ion-item *ngIf="datas?.length === 0">
+          <p>掃描不到任何裝置</p>
+        </ion-item>
       <ion-item *ngFor="let item of datas;let i = index">
           <ion-text >
               <p><span *ngIf="item.isEmmaDevice">EmmaDevice</span> #{{i+1}}-{{item.id}} </p>
               <p>RSSI : {{item.rssi}}</p>
               <p>{{item.timestamp | date: 'yyyy-MM-dd HH:mm:ss'}}</p> 
             </ion-text>
-            
+            <ion-button fill="outline" slot="end" (click)="connect(item.id)" *ngIf="item.isEmmaDevice">Connect</ion-button>
         </ion-item>
     </ion-list>
+
+    <ion-card *ngIf="debug">
+        <ion-card-header>
+          <ion-card-subtitle>{{debug?.id}}</ion-card-subtitle>
+          <ion-card-title>{{debug?.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{debug| json}}
+        </ion-card-content>
+      </ion-card>
   </div>
+
+
 </ion-content>
