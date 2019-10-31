@@ -49,8 +49,8 @@ export class HomePage {
   }
 
   scanAllDevice(){
-    //setInterval(()=>{
-      this.bleDevice.startScanWithOptions([],{reportDuplicates:true}).subscribe(x=>{
+    setInterval(()=>{
+      this.bleDevice.scan([],500).subscribe(x=>{
         var index = this.datas.map(element =>{
           return element.id;
         }).indexOf(x.id);
@@ -65,7 +65,7 @@ export class HomePage {
           this.datas[index].update(x);
         }
       })
-    //},1000);
+    },1000);
 
   }
 
