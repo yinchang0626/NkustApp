@@ -1,8 +1,19 @@
 # 2019-10-31  
-1.藍芽連線裝置  
-2.Ionic 部分指令說明(plugin,platform,prepare,resources) 
-3.Ionic 連線並取得 DB資料   
-4.後端程式
+1.藍芽連線裝置(使用https://ionicframework.com/docs/native/ble)  
+2.下載 android studio 及 JDK 8 (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)  
+3.Ionic 部分指令說明  
+``` cmd
+  //plugins新增cordova 外掛元件(如電池資訊，相機,GPS)
+  ionic cordova plugin add <pluginName>
+  //platform: 可新增 ios (macOs),android
+  ionic cordova platform add <ios or android>
+  ionic cordova platform remove <ios or android> 移除
+  //build:根據目前的 platform,選擇產生出對應的apk
+  ionic cordova build <android or ios>
+  //resources:建立 app 小圖示
+  ionic cordova resources
+  //可參考 https://ionicframework.com/docs/cli/commands/cordova-resources
+```
 
 # 2019-10-24
 1.後端程式  
