@@ -48,11 +48,12 @@ export class HomePage {
   isOnlyShowEmmDevice: boolean  = true;
   debug;
   constructor(private bleDevice:BLE,  private platform: Platform,public navCtrl: NavController ) {
-    
+
   }
   ionViewWillEnter(){
     
     this.platform.ready().then(()=>{
+      
       this.scanAllDevice();
       this.removeDeviceFromListIfTimeout(5000);
     });
@@ -72,6 +73,9 @@ export class HomePage {
   }
 
   scanAllDevice(){
+    this.bleDevice.scan([],5).subscribe(res=>{
+
+    });
       this.bleDevice.startScanWithOptions([],{reportDuplicates:true}).subscribe(x=>{
         if(!this.datas) this.datas = [];
         var index = this.datas.map(element =>{
