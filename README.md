@@ -1,3 +1,37 @@
+# 2019-11-13
+1.Install Java , Android Studio  
+2.Install gradle (https://gradle.org/releases/) ,及環境變數  
+3.ionic cordova build android (產生debug apk,可安裝無法上架)  
+4.ionic cordova build android --release   (產生unsinged-apk無法上架與安裝)  
+3.Java Keytool 環境變數，確認指令 keytool 可執行  
+4.建立 key
+``` cmd
+keytool -genkey -v -keystore android.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias android
+```
+5.將key放在Ionic根目錄且建立檔案 build.json  
+``` json
+{
+    "android": {
+        "debug": {
+            "keystore": "./android.keystore",
+            "storePassword": "android",
+            "alias": "android",
+            "password" : "password"
+        },
+        "release": {
+            "keystore": "./android.keystore",
+            "storePassword": "",
+            "alias": "android",
+            "password" : "password"
+        }
+    }
+}
+```
+6.ionic cordova build android --release  
+7 參考 ionic deploy 文件 及 cordova 文件  
+
+
+
 # 2019-10-31  
 1.藍芽連線裝置(使用https://ionicframework.com/docs/native/ble)  
 2.下載 android studio 及 JDK 8 (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)  
