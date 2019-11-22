@@ -29,7 +29,7 @@ export class QuizPageComponent implements OnInit {
   }
 
   loadData() {
-    this.http.get<any>(AppConsts.RemoteUrl + `/api/QuestionType`, { params: { groupid: this.currentGroupId } }).subscribe(x => {
+    this.http.get(AppConsts.RemoteUrl + `/api/QuestionType`, { params: { groupid: this.currentGroupId } }).subscribe(x => {
       this.data = x;
     });
   }

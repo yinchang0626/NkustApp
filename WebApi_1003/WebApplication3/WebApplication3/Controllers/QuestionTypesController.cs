@@ -24,6 +24,7 @@ namespace WebApplication3.Controllers
             var model = _context.QuestionType
                 .Include(x => x.Group)
                 .ToList();
+
                 //.Where(x => x.Group.Id == id).ToList();
 
             return View(model);

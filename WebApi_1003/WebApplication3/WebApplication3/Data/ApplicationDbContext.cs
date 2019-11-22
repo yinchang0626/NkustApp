@@ -11,12 +11,13 @@ namespace WebApplication3.Data
     {
 
         public DbSet<Question> Questions { get; set; }
+        public DbSet<WebApplication3.Data.QuestionGroup> QuestionGroup { get; set; }
+        public DbSet<WebApplication3.Data.QuestionType> QuestionType { get; set; }
+        public DbSet<WebApplication3.Data.QuestionOption> QuestionOption { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-        public DbSet<WebApplication3.Data.QuestionGroup> QuestionGroup { get; set; }
-        public DbSet<WebApplication3.Data.QuestionType> QuestionType { get; set; }
-        public DbSet<WebApplication3.Data.QuestionOption> QuestionOption { get; set; }
+
     }
 }

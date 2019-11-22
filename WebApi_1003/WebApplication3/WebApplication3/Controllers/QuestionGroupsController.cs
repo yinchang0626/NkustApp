@@ -57,7 +57,7 @@ namespace WebApplication3.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(questionGroup);
+                _context.QuestionGroup.Add(questionGroup);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -96,7 +96,7 @@ namespace WebApplication3.Controllers
             {
                 try
                 {
-                    _context.Update(questionGroup);
+                    _context.QuestionGroup.Update(questionGroup);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
