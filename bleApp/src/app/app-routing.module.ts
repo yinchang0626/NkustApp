@@ -11,9 +11,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule],
-  providers:[
-    BLE
-  ]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
